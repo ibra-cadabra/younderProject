@@ -1,0 +1,10 @@
+<div>
+
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let prod of produits">
+      {{prod.nomProduit}} {{prod.qualiteProduit}} {{prod.tailleProduit}} {{prod.prix}}
+    </li>
+  </ul>
+  <a routerLink="/histoCommand">Retour à la liste</a>
+
+</div>

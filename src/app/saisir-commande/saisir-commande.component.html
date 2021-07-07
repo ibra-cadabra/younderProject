@@ -1,0 +1,323 @@
+<h1 class="text-center">Enregistrement d'une commande</h1>
+<br>
+<div [hidden]="commandeView" id="enregistrer">
+  <br>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <!--  Informations du contact -->
+    <div [hidden]="contactView" class="contact">
+      <h3 class="text-center">Informations du client</h3>
+      <div class="row">
+        <div class="col order-first text-center">
+          <mat-form-field appearance="fill">
+            <mat-label>Nom du client</mat-label>
+            <input formControlName="nomClient" matInput>
+            <mat-error *ngIf="nomClientControls.hasError('required')">Nom obligatoire</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col text-center">
+          <mat-form-field appearance="fill">
+            <mat-label>Prénom du client</mat-label>
+            <input formControlName="prenomClient" matInput>
+            <mat-error *ngIf="prenomClientControls.hasError('required')">Prénom obligatoire</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col order-last text-center">
+          <mat-form-field appearance="fill">
+            <mat-label>Téléphone du client</mat-label>
+            <input formControlName="telephoneClient" matInput type="number">
+            <mat-error *ngIf="telephoneClientControls.hasError('required')">Téléphone obligatoire</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <!--  Informations du produit -->
+    <div *ngIf="form.value.nomClient != '' && form.value.prenomClient != '' && form.value.telephoneClient != ''"
+         class="produit">
+      <h3 class="text-center">Informations du Produit</h3>
+      <div class="row">
+        <!--  nom du produit  -->
+        <div class="col order-first text-center">
+          <mat-form-field appearance="fill">
+            <mat-label>Nom du Produit</mat-label>
+            <mat-select formControlName="nomProduit">
+              <mat-option *ngFor="let produit of nomProduit" [value]="produit">
+                {{produit}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="nomProduitControls.hasError('required')">Nom du produit obligatoire</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!--  Qualité du bazin -->
+        <div *ngIf="form.value.nomProduit=='Bazin'" class="col text-center">
+          <mat-form-field appearance="fill">
+            <mat-label>Qualité du {{form.value.nomProduit}}</mat-label>
+            <mat-select formControlName="qualiteProduit">
+              <mat-option *ngFor="let bazin of qualiteBazin" [value]="bazin">
+                {{bazin}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="qualiteProduitControls.hasError('required')">Qualité du {{form.value.nomProduit}}
+              obligatoire
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!--  Qualité du Broder -->
+        <div *ngIf="form.value.nomProduit=='Broder'" class="col text-center">
+          <mat-form-field appearance="fill">
+            <mat-label>Qualité du {{form.value.nomProduit}}</mat-label>
+            <mat-select formControlName="qualiteProduit">
+              <mat-option *ngFor="let broder of qualiteBroder" [value]="broder">
+                {{broder}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="qualiteProduitControls.hasError('required')">Qualité du {{form.value.nomProduit}}
+              obligatoire
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!--  Qualité du tissu -->
+        <div *ngIf="form.value.nomProduit==='Tissu'" class="col text-center">
+          <mat-form-field appearance="fill">
+            <mat-label>Qualité du {{form.value.nomProduit}}</mat-label>
+            <mat-select formControlName="qualiteProduit">
+              <mat-option *ngFor="let tissu of qualiteTissu" [value]="tissu">
+                {{tissu}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="qualiteProduitControls.hasError('required')">Qualité du {{form.value.nomProduit}}
+              obligatoire
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!--  Qualité du Wax -->
+        <div *ngIf="form.value.nomProduit=='Wax'" class="col text-center">
+          <mat-form-field appearance="fill">
+            <mat-label>Qualité du {{form.value.nomProduit}}</mat-label>
+            <mat-select formControlName="qualiteProduit">
+              <mat-option *ngFor="let wax of qualiteWax" [value]="wax">
+                {{wax}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="qualiteProduitControls.hasError('required')">Qualité du {{form.value.nomProduit}}
+              obligatoire
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!--  Taille du (bazin,tissu,wax,broder) -->
+        <div *ngIf="form.value.qualiteProduit!==''" class="col text-center">
+          <mat-form-field appearance="fill">
+            <mat-label>Taille</mat-label>
+            <input formControlName="tailleProduit" matInput placeholder="Mètre(s)" type="number">
+            <mat-error *ngIf="tailleProduitControls.hasError('required')">Taille obligatoire</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!--  Montant -->
+        <div *ngIf="form.value.tailleProduit!==''" class="col text-center">
+          <mat-form-field appearance="fill">
+            <mat-label>Montant</mat-label>
+            <input formControlName="montantProduit" matInput placeholder="CFA" type="number">
+            <mat-error *ngIf="montantProduitControls.hasError('required')">Montant obligatoire</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Submit Ajouter au panier-->
+      <div class="text-center">
+        <button [disabled]="!form.valid" color="primary" mat-raised-button type="submit">Ajouter au panier</button>
+      </div>
+    </div>
+  </form>
+</div>
+<br/>
+<!--  Panier view & valider commande -->
+<div [hidden]="panierView">
+  <div class="text-center">
+    <button [disabled]="loading" (click)="orderView()" class="btn btn-danger" type="button">Ajouter un produit</button>
+  </div>
+  <hr />
+  <!-- Panier view -->
+  <div [hidden]="panierView" class="panier">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Produit</th>
+        <th scope="col">Qualité</th>
+        <th scope="col">Taille</th>
+        <th scope="col">Prix</th>
+        <th scope="col">Supp</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let produit of produits; index as i">
+        <td>{{produit.id}}</td>
+        <td>{{ produit.nomProduit}}</td>
+        <td>{{ produit.qualiteProduit }}</td>
+        <td>{{ produit.tailleProduit}}</td>
+        <td>{{ produit.prix.toLocaleString('fr-FR')}}</td>
+        <td>
+          <button (click)="removeProdFromPanier(produit)" class="btn-danger" type="button">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!--  valider commande -->
+  <div class="text-center">
+    <div>
+      <span class="badge badge-dark">{{montantTotal.toLocaleString('fr-FR')}} FCFA</span>
+    </div>
+    <button [disabled]="loading" (click)="saveOrder()" class="btn btn-lg btn-outline-primary">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+      Valider commande
+    </button>
+  </div>
+</div>
+
+
+<!--
+<div class="panier" [hidden]="panierView">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Produit</th>
+      <th scope="col">Qualité</th>
+      <th scope="col">Taille</th>
+      <th scope="col">Prix</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let produ of products">
+      <th scope="row">{{produ.id}}</th>
+      <td>{{ produ.nomProduit}}</td>
+      <td>{{ produ.qualiteProduit }}</td>
+      <td>{{ produ.tailleProduit}}</td>
+      <td>{{ produ.prix}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>{{montantTotal}}</p>
+  <p *ngFor="let prod of produits">
+    {{prod.nomProduit}}
+  </p>
+  <div class="demo-button-container">
+    <button mat-raised-button (click)="addData()" class="demo-button">
+      Ajouter un produit
+    </button>
+    <button
+      mat-raised-button
+      [disabled]="!dataSource.length"
+      (click)="removeData()"
+      class="demo-button">
+      Supprimer dernier produit
+    </button>
+  </div>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+
+<ng-container matColumnDef="produit">
+  <th mat-header-cell *matHeaderCellDef>Produit</th>
+  <td mat-cell *matCellDef="let element">{{element.nomProduit}}</td>
+</ng-container>
+
+
+<ng-container matColumnDef="qualite">
+  <th mat-header-cell *matHeaderCellDef>Qualité</th>
+  <td mat-cell *matCellDef="let element">{{element.qualiteProduitControls}}</td>
+</ng-container>
+
+
+<ng-container matColumnDef="taille">
+  <th mat-header-cell *matHeaderCellDef>Taille</th>
+  <td mat-cell *matCellDef="let element">{{element.tailleProduit}}</td>
+</ng-container>
+
+<ng-container matColumnDef="montant">
+  <th mat-header-cell *matHeaderCellDef>Montant</th>
+  <td mat-cell *matCellDef="let element">{{element.prix}}</td>
+</ng-container>
+
+<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+
+-->
+<!--
+<div class="form-group">
+  <div class="col-sm-12">
+    <label for="nomPoduit">Nom du Produit</label>
+    <select class="browser-default custom-select" id="nomPoduit">
+      <option>Bazin</option>
+      <option>Broder</option>
+      <option>Tissu</option>
+      <option>Wax</option>
+    </select>
+  </div>
+</div>
+
+      <div class="form-group">
+        <div class="col-sm-12">
+          <label for="typeTissu">Type de Tissu</label>
+          <select class="form-control browser-default custom-select" id="typeTissu">
+            <option>Fancy</option>
+            <option>Autre</option>
+          </select>
+        </div>
+      </div>
+
+<div class="form-group">
+  <div class="col-sm-12">
+    <label for="taille" class="control-label">Taille</label>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Mètre(s)</span>
+      </div>
+      <input type="number" id="taille" class="form-control" aria-label="Amount (to the nearest dollar)">
+      <div class="input-group-append">
+      </div>
+    </div>
+  </div>
+</div>
+
+      <div class="form-group">
+        <div class="col-sm-12">
+          <label for="montant" class="control-label">Montant</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">CFA</span>
+            </div>
+            <input type="number" id="montant" class="form-control" formControlName="montantProduit">
+            <div class="input-group-append">
+            </div>
+          </div>
+        </div>
+      </div>
+
+<div class="form-group">
+  <div class="col-sm-12">
+    <label for="commentaire" class="control-label">Laisser un commentaire</label>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Commentaire</span>
+      </div>
+      <textarea class="form-control" id="commentaire" aria-label="With textarea"></textarea>
+    </div>
+  </div>
+</div>
+
+
+-->

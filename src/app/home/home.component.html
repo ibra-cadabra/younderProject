@@ -1,0 +1,67 @@
+<!--
+<p>
+  <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
+  <button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
+</p>
+-->
+<div class="d-flex justify-content-xl-endcenter">
+  <div #myDropVente="ngbDropdown" class="navigMenu" ngbDropdown>
+    <button (focus)="myDropVente.open()" class="btn btn-primary mr-2" id="dropdownManual" ngbDropdownAnchor>Historique
+      des ventes
+    </button>
+    <div aria-labelledby="dropdownManual" ngbDropdownMenu>
+      <button class="btn btn-primary" ngbDropdownItem>Ventes de Bazin</button>
+      <button class="btn btn-primary" ngbDropdownItem>Ventes de Broder</button>
+      <button class="btn btn-primary" ngbDropdownItem>Ventes de Tissu</button>
+      <button class="btn btn-primary" ngbDropdownItem>Ventes de Wax</button>
+    </div>
+  </div>
+
+  <div #myDropAchat="ngbDropdown" class="navigMenu" ngbDropdown>
+    <button (focus)="myDropAchat.open()" class="btn btn-success mr-2" id="dropdownAchat" ngbDropdownAnchor>Historique
+      des achats
+    </button>
+    <div style="width: 100%" aria-labelledby="dropdownAchat" ngbDropdownMenu>
+      <button class="btn btn-success" ngbDropdownItem>Achats de Bazin</button>
+      <button class="btn btn-success" ngbDropdownItem>Achats de Broder</button>
+      <button class="btn btn-success" ngbDropdownItem>Achats de Tissu</button>
+      <button class="btn btn-success" ngbDropdownItem>Achats de Wax</button>
+    </div>
+  </div>
+
+  <div #myDropCreance="ngbDropdown" class="navigMenu" ngbDropdown>
+    <button (focus)="myDropCreance.open()" class="btn btn-danger mr-2" id="dropdownCreance" ngbDropdownAnchor>Historique
+      Créances
+    </button>
+    <div aria-labelledby="dropdownCreance" ngbDropdownMenu>
+      <button ngbDropdownItem>Créances clients</button>
+      <button ngbDropdownItem>Dettes fournisseurs</button>
+    </div>
+  </div>
+</div>
+
+<!-- Commande et historique commande -->
+<div class="row justify-content-center">
+  <!-- Commande -->
+  <div class="card text-center vente" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Enregistrer une vente</h5>
+      <img alt="" height=150 src="assets/images/vente2.jpg" width=150/>
+      <a class="btn btn-primary" routerLink="/saveCommand">
+        Saisir commande
+      </a>
+    </div>
+  </div>
+  <!-- Historique commandes -->
+  <div class="card text-center commande" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Historique Commandes</h5>
+      <img alt="" height=80 src="assets/images/vente2.jpg" width=80/>
+      <a class="btn btn-dark" routerLink="/histoCommand">
+        Voir
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Creances Client -->
