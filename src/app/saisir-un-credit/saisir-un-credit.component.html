@@ -1,0 +1,49 @@
+<h1 class="text-center">Enregistrement d'un crédit</h1>
+<br>
+<div id="enregistrer">
+  <br>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <!--  Informations du contact -->
+    <div class="contact">
+      <h3 class="text-center">Informations du client</h3>
+      <div class="row">
+        <div class="col order-first text-center">
+          <mat-form-field appearance="fill">
+            <mat-label>Nom du client</mat-label>
+            <input formControlName="nomClient" matInput>
+            <mat-error *ngIf="nomClientControls.hasError('required')">Nom obligatoire</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col text-center">
+          <mat-form-field appearance="fill">
+            <mat-label>Prénom du client</mat-label>
+            <input formControlName="prenomClient" matInput>
+            <mat-error *ngIf="prenomClientControls.hasError('required')">Prénom obligatoire</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col order-last text-center">
+          <mat-form-field appearance="fill">
+            <mat-label>Téléphone du client</mat-label>
+            <input formControlName="telephoneClient" matInput type="number">
+            <mat-error *ngIf="telephoneClientControls.hasError('required')">Téléphone obligatoire</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col order-last text-center">
+          <mat-form-field appearance="fill">
+            <mat-label>Montant du crédit</mat-label>
+            <input formControlName="montantCredit" matInput type="number">
+            <mat-error *ngIf="montantCreditControls.hasError('required')">Montant obligatoire</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <br>
+    <!--  valider commande -->
+    <div class="text-center">
+      <button [disabled]="!form.valid && !loading" mat-raised-button color="accent" type="submit">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+        Valider le crédit
+      </button>
+    </div>
+  </form>
+</div>

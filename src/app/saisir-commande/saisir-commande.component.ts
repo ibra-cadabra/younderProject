@@ -116,7 +116,7 @@ export class SaisirCommandeComponent implements OnInit {
   saveCommand(commande: Commande) {
     this.commands.push(commande);
     this.commandeService.create(this.commands).then(
-        value => {
+      () => {
           alert('Enregistré avec succès !');
           this.loading = false;
           this.router.navigate(['/home']);

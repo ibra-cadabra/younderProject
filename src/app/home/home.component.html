@@ -4,7 +4,7 @@
   <button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
 </p>
 -->
-<div class="d-flex justify-content-xl-endcenter">
+<div class="d-flex justify-content-center">
   <div #myDropVente="ngbDropdown" class="navigMenu" ngbDropdown>
     <button (focus)="myDropVente.open()" class="btn btn-primary mr-2" id="dropdownManual" ngbDropdownAnchor>Historique
       des ventes
@@ -41,27 +41,49 @@
 </div>
 
 <!-- Commande et historique commande -->
-<div class="row justify-content-center">
+<div class="justify-content-center">
   <!-- Commande -->
-  <div class="card text-center vente" style="width: 18rem;">
+  <div class="card text-center vente">
     <div class="card-body">
       <h5 class="card-title">Enregistrer une vente</h5>
-      <img alt="" height=150 src="assets/images/vente2.jpg" width=150/>
-      <a class="btn btn-primary" routerLink="/saveCommand">
-        Saisir commande
-      </a>
+      <img alt="" height=100 src="assets/images/vente2.jpg" width=100>
+      <br>
+      <button mat-raised-button color="primary"  routerLink="/saveCommand">
+        Saisir la commande
+      </button>
     </div>
   </div>
   <!-- Historique commandes -->
-  <div class="card text-center commande" style="width: 18rem;">
+  <div class="card text-center commande">
     <div class="card-body">
       <h5 class="card-title">Historique Commandes</h5>
-      <img alt="" height=80 src="assets/images/vente2.jpg" width=80/>
-      <a class="btn btn-dark" routerLink="/histoCommand">
-        Voir
-      </a>
+      <img alt="" height=100 src="assets/images/histo4.png" width=100>
+      <br>
+      <button mat-raised-button color="primary" routerLink="/histoCommand">
+        Regarder l'historique
+      </button>
     </div>
   </div>
 </div>
 
 <!-- Creances Client -->
+<div class="card text-center vente">
+  <div class="card-body">
+    <h5 class="card-title">Enregistrer un crédit</h5>
+    <img alt="" height=100 src="assets/images/push-emprunt.png" width=100>
+    <br>
+    <button mat-raised-button color="accent" routerLink="/saisirCredit">
+      Saisir le montant
+    </button>
+  </div>
+</div>
+<div class="card text-center vente">
+  <div class="card-body">
+    <h5 class="card-title">Crédits en cours</h5>
+    <img alt="" height=100 src="assets/images/reglementation-credit.jpg" width=100>
+    <br>
+    <button mat-raised-button color="accent" routerLink="/showCreditEnCours">
+      Regarder les crédits
+    </button>
+  </div>
+</div>

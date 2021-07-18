@@ -14,7 +14,7 @@ import {Router} from "@angular/router";
 })
 export class HistoriqueCommandesComponent implements OnInit, AfterViewInit {
   loading: boolean=true;
-  displayedColumns = ['Date', 'Nom Client', 'Prénom Client', 'Téléphone', 'Montant', 'Details', 'id'];
+  displayedColumns = ['Id','Date', 'Nom Client', 'Prénom Client', 'Téléphone', 'Montant', 'Details'];
   dataSource = new MatTableDataSource<Commande>();
   commands: Commande[] = [];
   produits: Produit[] = [];
@@ -24,25 +24,7 @@ export class HistoriqueCommandesComponent implements OnInit, AfterViewInit {
 
   constructor(private commandeService: CommandeService,
               private router: Router) {
-    this.dataSource.data = this.commands.slice();
-  }
-  sortData(sort: Sort){
-    const data = this.commands.slice();
-    if(!sort.active || sort.direction === ''){
-      this.dataSource.data = data;
-      return;
-    }
-    this.dataSource.data = data.sort((a, b) => {
-      const isAsc = sort.direction == 'asc';
-      switch (sort.active) {
-        case 'date': return compare(a.date, b.date,isAsc);
-        case 'nomClient': return compare(a.nomClient, b.nomClient,isAsc);
-        case 'prenomClient': return compare(a.prenomClient, b.prenomClient,isAsc);
-        case 'numeroTelephone': return compare(a.numeroTelephone, b.numeroTelephone,isAsc);
-        case 'montant': return compare(a.montant, b.montant,isAsc);
-        default: return 0;
-      }
-    });
+    //this.dataSource.data = this.commands.slice();
   }
 
   doFilter = (value: string) => {
@@ -58,10 +40,6 @@ export class HistoriqueCommandesComponent implements OnInit, AfterViewInit {
       if(value.id === id){
         this.commandeService.produits=value.listeProduits;
         this.router.navigate(['/singleCommand']);
-/*        value.listeProduits.forEach(
-          (value1) => {
-            this.produits.push(value1);
-          });*/
       }
     });
   }

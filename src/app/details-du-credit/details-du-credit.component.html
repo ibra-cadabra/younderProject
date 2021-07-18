@@ -1,0 +1,25 @@
+<a routerLink="/histoCommand">Retour à la liste</a>
+<div>
+  <p>{{currentCredit?.nomClient}}</p>
+  <p>{{currentCredit?.prenomClient}}</p>
+  <p>{{currentCredit?.numeroClient}}</p>
+  <p>{{currentCredit?.montantCredit}}</p>
+</div>
+<div class="container-fluid">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Date</th>
+      <th>Montant</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let cred of creditsAccompte; let i = index">
+      <td [tabIndex]="i">{{i+1}}</td>
+      <td>{{cred.date}}</td>
+      <td>{{cred.montant.toLocaleString('fr-FR')}}F CFA</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

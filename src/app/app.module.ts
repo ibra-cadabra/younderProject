@@ -30,6 +30,11 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {CommandeService} from "./services/commande.service";
 import { SingleCommandeComponent } from './single-commande/single-commande.component';
 import { EnregistrerCreditComponent } from './enregistrer-credit/enregistrer-credit.component';
+import { CreditEnCoursComponent } from './credit-en-cours/credit-en-cours.component';
+import { SaisirUnCreditComponent } from './saisir-un-credit/saisir-un-credit.component';
+import { VoirCreditEnCoursComponent } from './voir-credit-en-cours/voir-credit-en-cours.component';
+import { DetailsDuCreditComponent } from './details-du-credit/details-du-credit.component';
+import {CreditService} from "./services/credit.service";
 
 @NgModule({
   declarations: [
@@ -40,7 +45,11 @@ import { EnregistrerCreditComponent } from './enregistrer-credit/enregistrer-cre
     VenteProduitComponent,
     HistoriqueCommandesComponent,
     SingleCommandeComponent,
-    EnregistrerCreditComponent
+    EnregistrerCreditComponent,
+    CreditEnCoursComponent,
+    SaisirUnCreditComponent,
+    VoirCreditEnCoursComponent,
+    DetailsDuCreditComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +75,8 @@ import { EnregistrerCreditComponent } from './enregistrer-credit/enregistrer-cre
     MatPaginatorModule
   ],
   providers: [
-    CommandeService
+    CommandeService,
+    CreditService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Commande} from "../models/commande";
 import {CommandeService} from "../services/commande.service";
 import {Produit} from "../models/produit";
-import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-single-commande',
@@ -11,18 +10,9 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class SingleCommandeComponent implements OnInit {
 
-  data='';
-  commande: Commande | undefined;
-  id: number = 0;
-  nom = '';
-  prenom: string =''
-  numero: number = 0;
-  date: string = '';
-  montant: number = 0;
   produits: Produit[] = [];
 
-  constructor(private commandeService: CommandeService,
-              private route: ActivatedRoute) { }
+  constructor(private commandeService: CommandeService) { }
 
   ngOnInit(): void {
     this.produits = this.commandeService.produits;
